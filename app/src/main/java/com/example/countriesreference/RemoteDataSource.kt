@@ -1,21 +1,21 @@
 package com.example.countriesreference
 
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 
-class RemoteDataSource {
-    interface RestCountriesService {
-        @GET("/name/{name}")
-        fun getCountryByName(@Path("name") cityName: String): List<Country>
-    }
+interface RestCountriesApi {
+    @GET("/name/{name}")
+    suspend fun getCountryByName(@Path("name") cityName: String): List<Country>
+}
 
     var retrofit = Retrofit.Builder()
-        .baseUrl("https://restcountries.com/v3.1/")
+        .baseUrl("https://countriesinfo21.herokuapp.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    var restCountriesService = retrofit.create(RestCountriesService::class.java)
-}
+    var restCountriesApi = retrofit.create(RestCountriesApi::class.java)
+

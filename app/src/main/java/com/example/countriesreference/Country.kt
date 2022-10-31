@@ -6,9 +6,8 @@ data class Country(
     val population: Long,
     val area: Long,
     val languages: List<Language>
-) {
-}
+)
 
 data class Language(
     val name: String
-){}
+)
